@@ -1,9 +1,11 @@
 // Races Db Wrap
+var standingsClass = "standings";
+
 var RacesDbWrap = function () {
 	this.Races = [];
 };
 
-RacesDbWrap.Add = function(race) {
+RacesDbWrap.prototype.Add = function(race) {
 	this.Races.push(race);
 	
 };

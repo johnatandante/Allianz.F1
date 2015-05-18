@@ -1,11 +1,15 @@
 // Race Detail Db Wrap
-var RacesDbWrap = function () {
+var RacesDetailDbWrap = function () {
+	this.RaceName = "";
 	this.RaceDetail = [];
 };
 
+RacesDetailDbWrap.prototype.Add = function(race) {
+	this.Races.push(race);
+	
+};
 
-
-RacesDbWrap.prototype.Parse = function (htmlString) {
+RacesDetailDbWrap.prototype.Parse = function (htmlString) {
 	var xml2js = require('xml2js');
 	var options = {
 		trim: true,
@@ -36,4 +40,4 @@ RacesDbWrap.prototype.Parse = function (htmlString) {
   	
 };
 
-module.exports = new RacesDbWrap();
+module.exports = new RacesDetailDbWrap();

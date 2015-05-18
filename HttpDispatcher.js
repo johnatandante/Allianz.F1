@@ -68,7 +68,7 @@ HttpDispatcher.prototype.staticListener = function(req, res) {
 
 HttpDispatcher.prototype.dispatch = function(req, res) {
   var parsedUrl = require('url').parse(req.url, true);
-  console.log("Dispatch url: ", parsedUrl);
+  // console.log("Dispatch url: ", parsedUrl);
   if(parsedUrl.pathname.indexOf(this.staticFolderPrefix) == 0
     || parsedUrl.pathname.indexOf(this.cssFolderPrefix) == 0) {
     this.staticListener(req, res);

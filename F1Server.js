@@ -1,5 +1,8 @@
 var Dispatcher = require('./HttpDispatcher');
-  
+
+var DriversReader = require('./Controller/DriversReader');
+DriversReader.Read();
+
 var F1Server = function (dispatcherObj) {
   this.dispatcher = dispatcherObj; 
    
@@ -16,7 +19,6 @@ var bind = require('bind');
 var WriteContent = function(res, data) {
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end(data);
-    console.log("response with ", data);
 };
 
 
@@ -32,10 +34,10 @@ var HomeResponse = function(req, res, chain) {
 
 var DriversResponse = function(req, res, chain) {
   var path = require('path');
+  var driversi = DriversReader.DbWrap.Drivers;
   bind.toFile(path.join(__dirname, '/View/drivers.tpl'), 
-    {
-      id: 1
-    }, function(data) {
+    { drivers : DriversReader.DbWrap.Drivers }
+    , function(data) {
       WriteContent(res, data);
     });
 };

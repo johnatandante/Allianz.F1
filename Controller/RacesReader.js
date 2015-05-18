@@ -1,0 +1,43 @@
+// module wich supposed to read races' data
+var f1host = "www.formula1.com";
+var f1RacesUrl = "/content/fom-website/en/championship/races/2015.html";
+var raceTemplatePathUrl = "/content/fom-website/en/championship/results/2014-race-results/2014-{0}-results.html";
+
+var RacesReader = function() {
+	this.DbWrap = {};
+	
+};
+
+var onUrlKo = function (params) {
+	console.log("Ko ", f1RacesUrl, " - ", params);
+};
+
+RacesReader.prototype.Read = function () {
+	
+	this.DbWrap = require('../Model/RacesDbWrap.js');
+	var dbWrap = this.DbWrap;
+
+	var options = {
+	  host: f1host,
+	  path: f1RacesUrl
+	};
+	  
+	require('http').get(options, function(response) {
+		var str = '';
+		response.setEncoding('utf8');
+		
+		response.on('data', function (chunk) {
+			str += chunk;
+		});
+		
+		response.on('end', function () {
+			//console.log("Read request: ", str);
+			dbWrap.Parse(str);
+			console.log("RacesReader.prototype.Read - Elements: ", 
+						dbWrap.Races.length);
+		});
+	}).end();
+	
+};
+
+module.exports = new RacesReader();

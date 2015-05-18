@@ -1,7 +1,8 @@
 var Dispatcher = require('./HttpDispatcher');
 
 var DriversReader = require('./Controller/DriversReader');
-DriversReader.Read();
+var RacesReader = require('./Controller/RacesReader');
+var RaceDetailReader = require('./Controller/RaceDetailReader');
 
 var F1Server = function (dispatcherObj) {
   this.dispatcher = dispatcherObj; 
@@ -34,7 +35,8 @@ var HomeResponse = function(req, res, chain) {
 
 var DriversResponse = function(req, res, chain) {
   var path = require('path');
-  var driversi = DriversReader.DbWrap.Drivers;
+  DriversReader.Read();
+  
   bind.toFile(path.join(__dirname, '/View/drivers.tpl'), 
     { drivers : DriversReader.DbWrap.Drivers }
     , function(data) {
@@ -44,15 +46,26 @@ var DriversResponse = function(req, res, chain) {
 
 var RacesResponse = function(req, res, chain) {
   var path = require('path');
+  RacesReader.Read();
+
   bind.toFile(path.join(__dirname, '/View/races.tpl'), 
     {
-      id: 1
+      races : RacesReader.DbWrap.Races
     }, function(data) {
       WriteContent(res, data);
     });
 };
 
-  
+var RacesDetailResponse = function(req, res, chain) {
+  var path = require('path');
+  bind.toFile(path.join(__dirname, '/View/raceDatail.tpl'), 
+    {
+      positions : RaceDetailReader.DbWrap.RaceDetail
+    }, function(data) {
+      WriteContent(res, data);
+    });
+};
+
 var AdminResponse = function(req, res, chain) {
   var path = require('path');
   bind.toFile(path.join(__dirname, '/View/admin.tpl'), {
@@ -70,6 +83,7 @@ Dispatcher.onGet("/index.html", HomeResponse);
   
 Dispatcher.onGet("/drivers", DriversResponse);
 Dispatcher.onGet("/races", RacesResponse);
+Dispatcher.onGet("/raceDetail", RacesDetailResponse);
  //this.dispatcher.onGet("/score", HomeResponse);
 
 Dispatcher.onGet("/admin", AdminResponse);

@@ -90,7 +90,7 @@ DriversDbWrap.prototype.NavigateIntoInnerNode = function (nodeName, JsonNode) {
 DriversDbWrap.prototype.Parse = function (htmlString) {
 	var xml2js = require('xml2js');
 	var options = {
-		//trim: true,
+		trim: true,
 		strict: false,
 	};
 	var self = this;
@@ -117,14 +117,9 @@ DriversDbWrap.prototype.Parse = function (htmlString) {
 			self.NavigateIntoInnerNode("DIV", element);
 		});
 		
-    	//console.log(JSON.stringify(result));
 	});
    
 	
 };
-
-
-
-
 
 module.exports = new DriversDbWrap();

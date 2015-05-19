@@ -1,12 +1,5 @@
+var path = require('path');
 var Dispatcher = require('./HttpDispatcher');
-
-var DriversReader = require('./Controller/DriversReader');
-DriversReader.Read();
-
-var RacesReader = require('./Controller/RacesReader');
-RacesReader.Read();
-
-var RaceDetailReader = require('./Controller/RaceDetailReader');
 
 var F1Server = function (dispatcherObj) {
   this.dispatcher = dispatcherObj; 
@@ -27,7 +20,6 @@ var WriteContent = function(res, data) {
 };
 
 var HomeResponse = function(req, res, chain) {
-  var path = require('path');
   bind.toFile(path.join(__dirname, '/View/home.tpl'), 
     {
       id: 1
@@ -37,38 +29,44 @@ var HomeResponse = function(req, res, chain) {
 };
 
 var DriversResponse = function(req, res, chain) {
-  var path = require('path');
-
-  bind.toFile(path.join(__dirname, '/View/drivers.tpl'), 
-    { drivers : DriversReader.DbWrap.Drivers }
-    , function(data) {
-      WriteContent(res, data);
+  
+  var DriversReader = require('./Controller/DriversReader');
+  DriversReader.Read( function() {
+    bind.toFile(path.join(__dirname, '/View/drivers.tpl'), 
+      { drivers : DriversReader.DbWrap.Drivers }
+      , function(data) {
+        WriteContent(res, data);
+      });
     });
 };
 
 var RacesResponse = function(req, res, chain) {
-  var path = require('path');
-
-  bind.toFile(path.join(__dirname, '/View/races.tpl'), 
-    {
-      races : RacesReader.DbWrap.Races
-    }, function(data) {
-      WriteContent(res, data);
+  var RacesReader = require('./Controller/RacesReader');
+  RacesReader.Read(function() {
+    bind.toFile(path.join(__dirname, '/View/races.tpl'), 
+      {
+        races : RacesReader.DbWrap.Races
+      }, function(data) {
+        WriteContent(res, data);
+      });
     });
 };
 
 var RacesDetailResponse = function(req, res, chain) {
-  var path = require('path');
-  bind.toFile(path.join(__dirname, '/View/racedetail.tpl'), 
-    {
-      details : RaceDetailReader.DbWrap.RaceDetail
-    }, function(data) {
-      WriteContent(res, data);
-    });
+  
+  var RaceDetailReader = require('./Controller/RaceDetailReader');
+  var race = "australia";
+  RaceDetailReader.Read(race, function(){
+    bind.toFile(path.join(__dirname, '/View/racedetail.tpl'), 
+      {
+        details : RaceDetailReader.DbWrap.RaceDetail
+      }, function(data) {
+        WriteContent(res, data);
+      });
+  });
 };
 
 var AdminResponse = function(req, res, chain) {
-  var path = require('path');
   bind.toFile(path.join(__dirname, '/View/admin.tpl'), {
         name: 'Dante',
     }, function(data) {
@@ -84,7 +82,7 @@ Dispatcher.onGet("/index.html", HomeResponse);
   
 Dispatcher.onGet("/drivers", DriversResponse);
 Dispatcher.onGet("/races", RacesResponse);
-Dispatcher.onGet("/raceDetail", RacesDetailResponse);
+Dispatcher.onGet("/racedetail", RacesDetailResponse);
  //this.dispatcher.onGet("/score", HomeResponse);
 
 Dispatcher.onGet("/admin", AdminResponse);

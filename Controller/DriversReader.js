@@ -7,11 +7,11 @@ var DriversReader = function() {
 	
 };
 
-var onUrlKo = function (params) {
-	console.log("Ko ", f1DriversUrl, " - ", params);
+var onUrlKo = function (reason) {
+	console.log("Ko ", f1DriversUrl, " - ", reason);
 };
 
-DriversReader.prototype.Read = function () {
+DriversReader.prototype.Read = function (onSuccess) {
 	
 	this.DbWrap = require('../Model/DriversDbWrap.js');
 	var dbWrap = this.DbWrap;
@@ -20,10 +20,12 @@ DriversReader.prototype.Read = function () {
 	  host: f1host,
 	  path: f1DriversUrl
 	};
-	  
+	
 	require('http').get(options, function(response) {
 		var str = '';
 		response.setEncoding('utf8');
+		
+		response.on('error', onUrlKo);
 		
 		response.on('data', function (chunk) {
 			str += chunk;
@@ -33,6 +35,7 @@ DriversReader.prototype.Read = function () {
 			dbWrap.Parse(str);
 			console.log("DriversReader.prototype.Read - Elements: ", 
 						dbWrap.Drivers.length);
+			onSuccess();
 		});
 	}).end();
 };

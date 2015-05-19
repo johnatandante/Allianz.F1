@@ -55,7 +55,7 @@ RacesDbWrap.prototype.AddCollectionFromDiv = function (JsonDIVNode) {
 	sectionNode.P.forEach(function(pelement) {
 		switch(pelement["$"].CLASS) {
 			case "race-winner":
-				race.Winner = pelement.SPAN[0]["_"];
+				race.Winner = pelement["_"];
 				break;
 			case "teaser-date":
 				race.RaceDate = pelement["_"];

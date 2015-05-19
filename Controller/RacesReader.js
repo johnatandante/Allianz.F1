@@ -12,7 +12,7 @@ var onUrlKo = function (params) {
 	console.log("Ko ", f1RacesUrl, " - ", params);
 };
 
-RacesReader.prototype.Read = function () {
+RacesReader.prototype.Read = function (onSuccess) {
 	
 	this.DbWrap = require('../Model/RacesDbWrap.js');
 	var dbWrap = this.DbWrap;
@@ -26,6 +26,8 @@ RacesReader.prototype.Read = function () {
 		var str = '';
 		response.setEncoding('utf8');
 		
+		response.on('error', onUrlKo);
+		
 		response.on('data', function (chunk) {
 			str += chunk;
 		});
@@ -34,7 +36,9 @@ RacesReader.prototype.Read = function () {
 			dbWrap.Parse(str);
 			console.log("RacesReader.prototype.Read - Elements: ", 
 						dbWrap.Races.length);
+			onSuccess();
 		});
+		
 	}).end();
 	
 };

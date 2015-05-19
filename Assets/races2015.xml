@@ -9,7 +9,7 @@
 
 <head />
 <body>
-	
+	 
 	<div class="site-wrapper">	
 
         <header class="site-header" data-accountmanagement="&#x2f;content&#x2f;fom-website&#x2f;en&#x2f;account-management.html" data-premiumsales="&#x2f;content&#x2f;fom-website&#x2f;en&#x2f;subscribe-to-f1-access.html" />
@@ -20,62 +20,41 @@
 
 <main role="main" class="template template-raceindex">
   <div class="inner-wrap">
-		
     <div>
-        <div class="group article-columns raceindex-teaser-container">
-            <div>
-    
+      <div class="group article-columns raceindex-teaser-container">
+        <div>
             <a class="race-teaser-link column column-4" 
                 href="/content/fom-website/en/championship/races/2015/Australia.html">
                 <article class="fom-teaser animate is-expired teaser-width responsive-element">
-    
-                	<figure class="teaser-image" style="background-image:url(/content/fom-website/en/championship/races/2015/Australia/_jcr_content/image16x9.img.320.medium.jpg)" data-crop="/content/fom-website/en/championship/races/2015/Australia/_jcr_content/image16x9.img.320.medium.jpg">
+                	<figure class="teaser-image" 
+                            style="background-image:url(/content/fom-website/en/championship/races/2015/Australia/_jcr_content/image16x9.img.320.medium.jpg)" 
+                            data-crop="/content/fom-website/en/championship/races/2015/Australia/_jcr_content/image16x9.img.320.medium.jpg">
                 		<img class="placeholder-16x9" src="/etc/designs/fom-website/images/temp-16x9.gif" alt=""/>
-                		<img class="hidden" src="/content/fom-website/en/championship/races/2015/Australia/_jcr_content/image16x9.img.320.medium.jpg" alt="2015&#x20;FORMULA&#x20;1&#x20;ROLEX&#x20;AUSTRALIAN&#x20;GRAND&#x20;PRIX"/>
+                		<img class="hidden" src="/content/fom-website/en/championship/races/2015/Australia/_jcr_content/image16x9.img.320.medium.jpg" 
+                            alt="2015&#x20;FORMULA&#x20;1&#x20;ROLEX&#x20;AUSTRALIAN&#x20;GRAND&#x20;PRIX"/>
                 	</figure>
                     <section class="teaser-info">
-                    <p class="teaser-date">
-                        
-                            13
-                        
-                        -
-                        
-                            15 Mar
-                        
-                    </p>
-
-                    <h4 class="teaser-info-title">2015 FORMULA 1 ROLEX AUSTRALIAN GRAND PRIX</h4>
+                        <p class="teaser-date">
+                                13
+                            -
+                                15 Mar            
+                        </p>
+                        <h4 class="teaser-info-title">2015 FORMULA 1 ROLEX AUSTRALIAN GRAND PRIX</h4>
                         <p class="race-winner">
                             <span class="icon-winner"></span>Lewis
                             Hamilton
                         </p>
-                    
-                </section>
-            </article>
-        </a>
-    
-</div>
-
-
-        
-            
-            
-
-<div>
-    
+                    </section>
+                </article>
+            </a>
+        </div>
+        <div>
         <a class="race-teaser-link column column-4" href="/content/fom-website/en/championship/races/2015/Malaysia.html">
             <article class="fom-teaser animate is-expired teaser-width responsive-element">
-                
-                    
-
 	<figure class="teaser-image" style="background-image:url(/content/fom-website/en/championship/races/2015/Malaysia/_jcr_content/image16x9.img.320.medium.jpg)" data-crop="/content/fom-website/en/championship/races/2015/Malaysia/_jcr_content/image16x9.img.320.medium.jpg">
 		<img class="placeholder-16x9" src="/etc/designs/fom-website/images/temp-16x9.gif" alt=""/>
 		<img class="hidden" src="/content/fom-website/en/championship/races/2015/Malaysia/_jcr_content/image16x9.img.320.medium.jpg" alt="2015&#x20;FORMULA&#x20;1&#x20;PETRONAS&#x20;MALAYSIA&#x20;GRAND&#x20;PRIX"/>
 	</figure>
-
-
-                
-
                 <section class="teaser-info">
                     <p class="teaser-date">
                         

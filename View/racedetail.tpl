@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<meta charset="UTF-8">
 		<link href="/Css/style.css" rel="stylesheet" type="text/css">
 		<title>Allianz.F1 Race Detail</title>
 	</head>

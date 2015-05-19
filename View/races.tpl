@@ -8,15 +8,18 @@
 	<body>
 		<h1>List of F1 Races (2015)</h1>
 		<div class="raceContainer">
-		(: racess ~
-		<div class="race">
-			<p>
-				<span class="location">Location: [:Location:]</span>
-				<span class="nationality">[:Nationality:]</span>
-				<span class="racename">[:RaceName:]</span>
-				<span class="winner">Winner: [:Winner:]</span>
-			</p>
-		</div>
+		(: races ~
+		<a stryle="alink" href="[:DestinationUrl:]">
+			<div class="race" 
+						style="background-image:url([:Img:])">
+				<p>
+					<span class="location">Location: [:Location:]</span>
+					<span class="racename">[:RaceName:]</span>
+					<span class="racedate">[:RaceDate:]</span>
+					<span class="winner">Winner: [:Winner:]</span>
+				</p>
+			</div>
+		</a>
 		:)
 		</div>
 	</body>

@@ -36,7 +36,6 @@ RaceDetailReader.prototype.Read = function (race) {
 		});
 		
 		response.on('end', function () {
-			//console.log("Read request: ", str);
 			dbWrap.Parse(str);
 			console.log("RaceDetailReader.prototype.Read - Elements: ", 
 						dbWrap.RaceDetail.length);

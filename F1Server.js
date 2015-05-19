@@ -61,7 +61,7 @@ var RacesDetailResponse = function(req, res, chain) {
   var path = require('path');
   bind.toFile(path.join(__dirname, '/View/racedetail.tpl'), 
     {
-      positions : RaceDetailReader.DbWrap.RaceDetail
+      details : RaceDetailReader.DbWrap.RaceDetail
     }, function(data) {
       WriteContent(res, data);
     });

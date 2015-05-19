@@ -30,7 +30,6 @@ DriversReader.prototype.Read = function () {
 		});
 		
 		response.on('end', function () {
-			//console.log("Read request: ", str);
 			dbWrap.Parse(str);
 			console.log("DriversReader.prototype.Read - Elements: ", 
 						dbWrap.Drivers.length);

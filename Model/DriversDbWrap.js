@@ -73,7 +73,6 @@ DriversDbWrap.prototype.NavigateIntoInnerNode = function (nodeName, JsonNode) {
 	
 	var self = this;
 	var classobj =  JsonNode["$"];
-	console.log("Start NavigateIntoInner ", nodeName, " ", classobj);
 	
 	if( classobj != null && classobj.CLASS == standingsClass) {
 		// vado secco al sodo
@@ -83,8 +82,6 @@ DriversDbWrap.prototype.NavigateIntoInnerNode = function (nodeName, JsonNode) {
 			self.NavigateIntoInnerNode(nodeName, JsonChildNode);
 		});
 	}
-	
-	console.log("End NavigateIntoInner ", nodeName, " ", classobj);
 };
 
 DriversDbWrap.prototype.Parse = function (htmlString) {

@@ -1,5 +1,7 @@
 // Races Db Wrap
 var standingsClass = "group article-columns raceindex-teaser-container";
+var f1host = "www.formula1.com";
+var raceTemplatePathUrl = "./racedetail?detail={0}";
 
 var RacesDbWrap = function () {
 	this.Races = [];
@@ -23,15 +25,29 @@ RacesDbWrap.prototype.AddCollectionFromDiv = function (JsonDIVNode) {
 		Location: "NoWhere",
 		Img: "<nodata>",
 		RaceName: "None",
-		Nationality: "...",
 		Winner: "Nope",
+		RaceDate: "Never",
+		DestinationUrl: "",
 	};
 	
 	var anchorNode = JsonDIVNode.A[0];
-	race.Location = anchorNode["$"].HREF; // substring lo faccio dopo 
+	var tmpStr = anchorNode["$"].HREF
+									.toLowerCase()
+									.replace(".html", "");
+	race.Location = tmpStr.substring(tmpStr.lastIndexOf("/") + 1, tmpStr.length);
+	race.DestinationUrl = raceTemplatePathUrl.replace("{0}", race.Location);
 	
-	var imgNode = anchorNode.ARTICLE[0].FIGURE[0].IMG.find(function(element) { return element["$"].CLASS == "hidden"; });
-	race.Img = imgNode.SRC;
+	var imgNodeCollection = anchorNode.ARTICLE[0].FIGURE[0].IMG;
+	var imgNode = {};
+	imgNodeCollection.forEach(function(element) { 
+		if(element["$"].CLASS == "hidden"){
+			imgNode = element;
+			return;
+		}
+	});
+	
+	if(imgNode != null)
+		race.Img = "http://" + f1host + imgNode["$"].SRC;
 	
 	var sectionNode = anchorNode.ARTICLE[0].SECTION[0];
 	race.RaceName = sectionNode.H4[0]["_"];
@@ -42,7 +58,7 @@ RacesDbWrap.prototype.AddCollectionFromDiv = function (JsonDIVNode) {
 				race.Winner = pelement.SPAN[0]["_"];
 				break;
 			case "teaser-date":
-				race.Date = pelement["_"];
+				race.RaceDate = pelement["_"];
 				break;
 		}
 	});

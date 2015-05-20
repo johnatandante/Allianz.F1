@@ -7,6 +7,7 @@
 	<body>
 		<h1>List of F1 Drivers</h1>
 		<div class="driverContainer">
+			<div class="backTo"><a href="./home">Back to Home</a></div>
 		(: drivers ~
 		<div class="driver">
 			<p>
@@ -19,6 +20,7 @@
 			</p>
 		</div>
 		:)
+			<div class="backTo"><a href="./home">Back to Home</a></div>
 		</div>
 	</body>
 </html>

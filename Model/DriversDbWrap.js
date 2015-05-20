@@ -14,8 +14,8 @@ DriversDbWrap.prototype.onDbRejected = function (reason) {
 	console.log("Can't populate DriversDbWrap for ", reason);	
 };
 
-var ParseTrItem = function (item) {
-	var driver = {
+var GetNewItem = function() {
+	return {
 				Position: -1,
 				FirstName: "None",
 				LastName: "Found",
@@ -23,7 +23,11 @@ var ParseTrItem = function (item) {
 				Team: "None",
 				Car: "Mercedes car",
 				Points: -1,
-				};
+	};
+};
+
+var ParseTrItem = function (item) {
+	var driver = GetNewItem();
 				
 	item.TD.forEach(function(tr) {
 		
@@ -95,17 +99,7 @@ DriversDbWrap.prototype.Parse = function (htmlString) {
     parser.parseString(htmlString.substring(0, htmlString.length), function (err, jsonresult) {
 		if(err){
 			console.log(err);
-			var driver = {
-			Position: -1,
-			FirstName: "None",
-			LastName: "Found",
-			Nationality: "...",
-			Team: "Nope",
-			//Mercedes car
-			Points: -1,
-			};
-			
-			this.Add(driver);
+			this.Add(GetNewItem());
 			return;
 		}
 		

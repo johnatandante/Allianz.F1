@@ -16,12 +16,8 @@ RacesDbWrap.prototype.onDbRejected = function (reason) {
 	console.log("Can't populate RacesDbWrap for ", reason);	
 };
 
-RacesDbWrap.prototype.AddCollectionFromDiv = function (JsonDIVNode) {
-	var self = this;
-	// la struttura è DIV.A.ARTICLE	.FIGURE	.IMG
-	//								.SECTION.P
-	//										.H4
-	var race = {		
+var GetNewItem = function() {
+	return {		
 		Location: "NoWhere",
 		Img: "<nodata>",
 		RaceName: "None",
@@ -29,6 +25,14 @@ RacesDbWrap.prototype.AddCollectionFromDiv = function (JsonDIVNode) {
 		RaceDate: "Never",
 		DestinationUrl: "",
 	};
+};
+
+RacesDbWrap.prototype.AddCollectionFromDiv = function (JsonDIVNode) {
+	var self = this;
+	// la struttura è DIV.A.ARTICLE	.FIGURE	.IMG
+	//								.SECTION.P
+	//										.H4
+	var race = GetNewItem();
 	
 	var anchorNode = JsonDIVNode.A[0];
 	var tmpStr = anchorNode["$"].HREF
@@ -99,14 +103,7 @@ RacesDbWrap.prototype.Parse = function (htmlString) {
     parser.parseString(htmlString.substring(0, htmlString.length), function (err, jsonresult) {
 		if(err){
 			console.log(err);
-			var race = {
-				Location: -1,
-				RaceName: "None",
-				Nationality: "...",
-				Winner: "Nope",
-			};
-			
-			this.Add(race);
+			this.Add(GetNewItem());
 			return;
 		}
 		

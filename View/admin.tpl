@@ -6,6 +6,9 @@
 		<title>Allianz.F1 Admin</title>
 	</head>
 	<body>
-		<p>Restricted area...</p>
+		<div>
+			<p>Restricted area...</p>
+			<div class="backTo"><a href="./home">Back to Home</a></div>
+		</div>
 	</body>
 </html>

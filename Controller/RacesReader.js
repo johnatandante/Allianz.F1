@@ -13,8 +13,12 @@ var onUrlKo = function (params) {
 };
 
 RacesReader.prototype.Read = function (onSuccess) {
-	
 	this.DbWrap = require('../Model/RacesDbWrap.js');
+	if(this.DbWrap.Races.length > 0) {
+		onSuccess();
+		return;
+	}
+	
 	var dbWrap = this.DbWrap;
 
 	var options = {

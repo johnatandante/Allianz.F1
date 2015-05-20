@@ -8,6 +8,8 @@
 	<body>
 		<h1>List of F1 Races (2015)</h1>
 		<div class="raceContainer">
+			
+			<div class="backTo"><a href="./home">Back to Home</a></div>
 		(: races ~
 		<a stryle="alink" href="[:DestinationUrl:]">
 			<div class="race" 
@@ -21,6 +23,8 @@
 			</div>
 		</a>
 		:)
+		
+			<div class="backTo"><a href="./home">Back to Home</a></div>
 		</div>
 	</body>
 </html>

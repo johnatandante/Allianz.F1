@@ -5,8 +5,9 @@
 		<title>Allianz.F1 Race Detail</title>
 	</head>
 	<body>
-		<h1>Race (:RaceName:)</h1>
+		<h1>Race (:raceDescription:)</h1>
 		<div class="driverContainer">
+			<div class="backTo"><a href="./races">Back to Races</a></div>
 		(: details ~
 		<div class="driver">
 			<p>
@@ -15,10 +16,12 @@
 				<span class="firstName">[:FirstName:]</span>
 				<span class="lastName">[:LastName:]</span>
 				<span class="team">[:Team:]</span>
+				<span class="time">[:Time:]</span>
 				<span class="ponts">Points: [:Points:]</span>
 			</p>
 		</div>
 		:)
+			<div class="backTo"><a href="./races">Back to Races</a></div>
 		</div>
 	</body>
 </html>

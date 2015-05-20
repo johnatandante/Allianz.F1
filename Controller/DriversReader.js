@@ -12,10 +12,13 @@ var onUrlKo = function (reason) {
 };
 
 DriversReader.prototype.Read = function (onSuccess) {
-	
 	this.DbWrap = require('../Model/DriversDbWrap.js');
+	if(this.DbWrap.Drivers.length > 0){
+		onSuccess();
+		return;
+	}
+		
 	var dbWrap = this.DbWrap;
-
 	var options = {
 	  host: f1host,
 	  path: f1DriversUrl

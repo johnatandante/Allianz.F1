@@ -1,74 +1,41 @@
 
-<?xml version="1.0"?>
 
+<!DOCTYPE html>
 
 <!--[if IE 8 ]> <html class="nojs lt-ie10 lte-ie9 ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]> <html class="nojs lt-ie10 ie9" lang="en"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]>-->
+<!--[if (gt IE 9)|!(IE)]><!-->
 <html class="no-js editmode-false" lang="en">
+<!--<![endif]-->
 
+<head>
+    <title>Race</title>
+</head>
 <body>
-	
-	
-
-
-	
+		<input type="hidden" id="gtm-template" value="informationfeature"/>
+		<input type="hidden" id="gtm-page-title" value="Race"/>
+		<input type="hidden" id="gtm-carbon-user" value="non&#x20;carbon&#x20;user"/>
 	<div class="site-wrapper">	
-		
-
-
-<header class="site-header" data-accountmanagement="&#x2f;content&#x2f;fom-website&#x2f;en&#x2f;account-management.html" data-premiumsales="&#x2f;content&#x2f;fom-website&#x2f;en&#x2f;subscribe-to-f1-access.html" />
-
-<header class="page-header" />
-
-<div class="advertisingarea advertisingarea-header">
-	<div class="parbase teaser"/>
-</div>
-
-<main role="main" class="template template-feature template-informationfeature go-full-width">
-
-<article>
-
+		<header class="page-header" ></header>	
+		<div class="advertisingarea advertisingarea-header">
+			<div class="parbase teaser" />
+		</div>
+		<main role="main" class="template template-feature template-informationfeature go-full-width">
+			<article>
+				
 	<div class="inner-wrap group">
-
-		
-		
-
-		
 		<div class="article-title">
-
-	
-	<h1 class="headline">
-		Race
-	</h1>
-
-	
-	
-
-<div class="tags">
-	<a class="tag-link">Australia</a>
-</div>
-
-	
-	
-
-
-</div>
-
-		
+			<h1 class="headline">
+				Race
+			</h1>
+			<div class="tags">
+				<a class="tag-link">Australia</a>
+			</div>
+		</div>	
 		<div class="article-content">
-
-    
-    
-    
     <div class="raceresults parbase">
-
-
 <div class="race-results component responsive-element">
-
 	<div class="standings">
-
-		
 		<h3 class="title race-title hidden">2015 Australian Grand Prix</h3>
 
 		<table>

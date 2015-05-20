@@ -1,18 +1,41 @@
 var path = require('path');
 var Dispatcher = require('./HttpDispatcher');
 
+var DriversReader = require('./Controller/DriversReader');
+var RacesReader = require('./Controller/RacesReader');
+var RaceDetailReader = require('./Controller/RaceDetailReader');
+
+var bind = require('bind');
+
 var F1Server = function (dispatcherObj) {
   this.dispatcher = dispatcherObj; 
-   
+  
+  this.server_port = 8080;
+  this.server_ip_address = "127.0.0.1";
+  
   // definisco un listener per la page2
   //dispatcher.onPost("/page2", function(req, res) {
   //  res.writeHead(200, {'Content-Type': 'text/plain'});
   //  res.end('Page two'); 
   //}); 
-   
+  
+  this.Run = function (param) {
+    var self = this;
+      
+    if(process == undefined) {
+    	process = { };
+    }
+    self.server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+    self.server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+    
+    require('http').createServer(function (req, res) {
+      Dispatcher.dispatch(req, res);
+      
+    }).listen(this.server_port, this.server_ip_address);
+    return self.server_ip_address+ ":" + self.server_port;
+  };
+  
 };
-
-var bind = require('bind');
 
 var WriteContent = function(res, data) {
     res.writeHead(200, {'Content-Type': 'text/html'});
@@ -30,7 +53,6 @@ var HomeResponse = function(req, res, chain) {
 
 var DriversResponse = function(req, res, chain) {
   
-  var DriversReader = require('./Controller/DriversReader');
   DriversReader.Read( function() {
     bind.toFile(path.join(__dirname, '/View/drivers.tpl'), 
       { drivers : DriversReader.DbWrap.Drivers }
@@ -41,7 +63,6 @@ var DriversResponse = function(req, res, chain) {
 };
 
 var RacesResponse = function(req, res, chain) {
-  var RacesReader = require('./Controller/RacesReader');
   RacesReader.Read(function() {
     bind.toFile(path.join(__dirname, '/View/races.tpl'), 
       {
@@ -53,13 +74,10 @@ var RacesResponse = function(req, res, chain) {
 };
 
 var RacesDetailResponse = function(req, res, chain) {
-  
-  var RaceDetailReader = require('./Controller/RaceDetailReader');
-  //console.log("Params: ", req.params);
-  
-  RaceDetailReader.Read(req.param.race, function(){
+  RaceDetailReader.Read(req.params.race, function(){
     bind.toFile(path.join(__dirname, '/View/racedetail.tpl'), 
       {
+        raceDescription : RaceDetailReader.DbWrap.RaceDescription,
         details : RaceDetailReader.DbWrap.RaceDetail
       }, function(data) {
         WriteContent(res, data);
@@ -88,8 +106,8 @@ Dispatcher.onGet("/racedetail", RacesDetailResponse);
 
 Dispatcher.onGet("/admin", AdminResponse);
 
-require('http').createServer(function (req, res) {
-  Dispatcher.dispatch(req, res);
-}).listen(1337, '127.0.0.1');
+F1Server.prototype.OnServerUp = function(message) {
+  console.log("F1 Server up and running at ", message);
+};
 
 module.exports = new F1Server(Dispatcher);

@@ -1,7 +1,7 @@
 // Races Db Wrap
 var standingsClass = "group article-columns raceindex-teaser-container";
 var f1host = "www.formula1.com";
-var raceTemplatePathUrl = "./racedetail?detail={0}";
+var raceTemplatePathUrl = "./racedetail?race={0}";
 
 var RacesDbWrap = function () {
 	this.Races = [];

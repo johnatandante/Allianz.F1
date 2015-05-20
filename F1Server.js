@@ -55,8 +55,9 @@ var RacesResponse = function(req, res, chain) {
 var RacesDetailResponse = function(req, res, chain) {
   
   var RaceDetailReader = require('./Controller/RaceDetailReader');
-  var race = "australia";
-  RaceDetailReader.Read(race, function(){
+  //console.log("Params: ", req.params);
+  
+  RaceDetailReader.Read(req.param.race, function(){
     bind.toFile(path.join(__dirname, '/View/racedetail.tpl'), 
       {
         details : RaceDetailReader.DbWrap.RaceDetail

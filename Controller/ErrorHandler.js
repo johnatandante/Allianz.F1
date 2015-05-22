@@ -5,7 +5,10 @@ var ErrorHandler = function () {
 
 ErrorHandler.prototype.isPageNotFound = function (nodeContainer) {
 	try {
-		return nodeContainer.DIV[0].DIV[0].H1 != null;
+		var h1node = nodeContainer.DIV[0].DIV[0].H1;
+		return h1node != null && h1node.length > 0
+			&& h1node[0]["$"].CLASS == "headline"
+			&& h1node[0]["_"].toLowerCase().indexOf("we could") >= 0;
 	} catch(error) {
 		console.log(error);
 		return true;

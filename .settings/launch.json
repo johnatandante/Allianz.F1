@@ -20,6 +20,6 @@
 			"runtimeExecutable": null,
 			// Environment variables passed to the program.
 			"env": { }
-		}, 
+		}
 	]
 }

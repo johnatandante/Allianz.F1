@@ -1,119 +1,41 @@
 // Races Db Wrap
-var standingsClass = "group article-columns raceindex-teaser-container";
 var f1host = "www.formula1.com";
 var raceTemplatePathUrl = "./racedetail?race={0}";
 
 var RacesDbWrap = function () {
 	this.Races = [];
-};
 
-RacesDbWrap.prototype.Add = function(race) {
-	this.Races.push(race);
-	
-};
-
-RacesDbWrap.prototype.onDbRejected = function (reason) {
-	console.log("Can't populate RacesDbWrap for ", reason);	
-};
-
-var GetNewItem = function() {
-	return {		
-		Location: "NoWhere",
-		Img: "<nodata>",
-		RaceName: "None",
-		Winner: "Nope",
-		RaceDate: "Never",
-		DestinationUrl: "",
+	this.Clear = function() {
+		this.Races = [];
 	};
-};
-
-RacesDbWrap.prototype.AddCollectionFromDiv = function (JsonDIVNode) {
-	var self = this;
-	// la struttura è DIV.A.ARTICLE	.FIGURE	.IMG
-	//								.SECTION.P
-	//										.H4
-	var race = GetNewItem();
 	
-	var anchorNode = JsonDIVNode.A[0];
-	var tmpStr = anchorNode["$"].HREF
-									.toLowerCase()
-									.replace(".html", "");
-	race.Location = tmpStr.substring(tmpStr.lastIndexOf("/") + 1, tmpStr.length);
-	race.DestinationUrl = raceTemplatePathUrl.replace("{0}", race.Location);
-	
-	var imgNodeCollection = anchorNode.ARTICLE[0].FIGURE[0].IMG;
-	var imgNode = {};
-	imgNodeCollection.forEach(function(element) { 
-		if(element["$"].CLASS == "hidden"){
-			imgNode = element;
-			return;
-		}
-	});
-	
-	if(imgNode != null)
-		race.Img = "http://" + f1host + imgNode["$"].SRC;
-	
-	var sectionNode = anchorNode.ARTICLE[0].SECTION[0];
-	race.RaceName = sectionNode.H4[0]["_"];
-	
-	sectionNode.P.forEach(function(pelement) {
-		switch(pelement["$"].CLASS) {
-			case "race-winner":
-				race.Winner = pelement["_"];
-				break;
-			case "teaser-date":
-				race.RaceDate = pelement["_"];
-				break;
-		}
-	});
-	self.Add(race);
-	
-};
-
-RacesDbWrap.prototype.NavigateIntoInnerNode = function (nodeName, JsonNode) {
-	if(JsonNode == null) {
-		console.log("--end for null");
-		return;
-	}
-	
-	var self = this;
-	var classobj =  JsonNode["$"];
-	
-	if( classobj != null && classobj.CLASS == standingsClass) {
-		// vado secco al sodo
-		JsonNode.DIV.forEach(function(divElement) {
-			self.AddCollectionFromDiv(divElement);
-		});
-	} else if(JsonNode[nodeName] != null){
-		JsonNode[nodeName].forEach(function(JsonChildNode) {
-			self.NavigateIntoInnerNode(nodeName, JsonChildNode);
-		});
-	}
-	
-};
-
-RacesDbWrap.prototype.Parse = function (htmlString) {
-	var xml2js = require('xml2js');
-	var options = {
-		trim: true,
-		strict: false,
+	this.Add = function(race) {
+		this.Races.push(race);
 	};
-	var self = this;
-    var parser = new xml2js.Parser(options);
-    parser.parseString(htmlString.substring(0, htmlString.length), function (err, jsonresult) {
-		if(err){
-			console.log(err);
-			this.Add(GetNewItem());
-			return;
-		}
-		
-		var firstNodeCollection = jsonresult.HTML.BODY[0].DIV[0].MAIN[0].DIV;
-		firstNodeCollection.forEach(function (element) {
-			self.NavigateIntoInnerNode("DIV", element);
-		});
-		
-	});
-  	
+
+	this.GetNewItem = function() {
+		return {		
+			Location: "NoWhere",
+			Img: "<nodata>",
+			RaceName: "None",
+			Winner: "Nope",
+			RaceDate: "Never",
+			DestinationUrl: "",
+		};
+	};
+	
+	this.SetLocationDate = function(url, race) {
+		var tmpStr = url.toLowerCase()
+						.replace(".html", "");
+						
+		race.Location = tmpStr.substring(tmpStr.lastIndexOf("/") + 1, tmpStr.length);
+		race.DestinationUrl = raceTemplatePathUrl.replace("{0}", race.Location);
+	};
+	
+	this.SetImgData = function(url, race) {
+		race.Img = "http://" + f1host + url;	
+	};
+	
 };
 
 module.exports = new RacesDbWrap();

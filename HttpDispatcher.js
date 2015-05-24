@@ -13,10 +13,15 @@ var HttpDispatcher = function() {
 };
 
 HttpDispatcher.prototype.on = function(method, url, cb) {
-  this.listeners[method].push({
-    cb: cb,
-    url: url 
-  }); 
+  try {
+   
+    this.listeners[method].push({
+      cb: cb,
+      url: url 
+    });  
+  } catch (error) {
+    console.log(error);
+  }
   
 };
  

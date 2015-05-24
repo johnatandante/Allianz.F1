@@ -13,7 +13,20 @@ var RaceDetailDbWrap = function () {
 	this.Add = function(race) {
 		this.RaceDetail.push(race);
 	};
-
+	
+	this.GetNewItem = function () {
+		return { 
+				Position: -1,
+				FirstName: "None",
+				LastName: "None",
+				DriverTag: "None",
+				Country: "Nope",
+				Team : "None",
+				Time : "",
+				Points: -1,
+		};
+	};
+	
 };
 
 module.exports = new RaceDetailDbWrap();

@@ -63,26 +63,36 @@ var DriversResponse = function(req, res, chain) {
 };
 
 var RacesResponse = function(req, res, chain) {
-  RacesReader.Read(function() {
-    bind.toFile(path.join(__dirname, '/View/races.tpl'), 
-      {
-        races : RacesReader.DbWrap.Races
-      }, function(data) {
-        WriteContent(res, data);
-      });
-    });
+  try {
+    RacesReader.Read(function() {
+      bind.toFile(path.join(__dirname, '/View/races.tpl'), 
+        {
+          races : RacesReader.DbWrap.Races
+        }, function(data) {
+          WriteContent(res, data);
+        });
+      });  
+  } catch (error) {
+    console.log(error);  
+  }
+  
+  
 };
 
 var RacesDetailResponse = function(req, res, chain) {
-  RaceDetailReader.Read(req.params.race, function(){
-    bind.toFile(path.join(__dirname, '/View/racedetail.tpl'), 
-      {
-        raceDescription : RaceDetailReader.DbWrap.RaceDescription,
-        details : RaceDetailReader.DbWrap.RaceDetail
-      }, function(data) {
-        WriteContent(res, data);
-      });
-  });
+  try {
+    RaceDetailReader.Read(req.params.race, function(){
+      bind.toFile(path.join(__dirname, '/View/racedetail.tpl'), 
+        {
+          raceDescription : RaceDetailReader.DbWrap.RaceDescription,
+          details : RaceDetailReader.DbWrap.RaceDetail
+        }, function(data) {
+          WriteContent(res, data);
+        });
+    });  
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 var AdminResponse = function(req, res, chain) {

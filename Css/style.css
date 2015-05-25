@@ -27,3 +27,29 @@ h4 {
 	color: red;
 	font-size: 12;
 }
+
+DIV.race {
+	max-width: 440px;
+	min-height: 240px;
+	
+}
+
+/* unvisited link */
+A.raceLink:link {
+    color: white;
+}
+
+/* visited link */
+A.raceLink:visited {
+    color: darkgray;
+}
+
+/* mouse over link */
+A.raceLink:hover {
+    color: lightgray;
+}
+
+/* selected link */
+A.raceLink:active {
+    color: whitesmoke;
+}

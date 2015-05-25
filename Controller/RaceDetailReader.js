@@ -37,10 +37,13 @@ RaceDetailReader.prototype.Parse = function (htmlString) {
 			return;
 		}
 		
-		var firstNodeCollection = jsonresult.HTML.BODY[0].DIV[0].MAIN[0].ARTICLE[0];
-		if(ErrorHandler.isPageNotFound(firstNodeCollection)) {
+		if(ErrorHandler.isPageNotFound(jsonresult.HTML.BODY[0])) {
 			return;
 		}
+		
+		var firstNodeCollection = jsonresult.HTML.BODY[0].DIV[0].MAIN[0].ARTICLE[0];
+		if(firstNodeCollection == null)
+			return;
 		
 		self.SetRaceName(firstNodeCollection.DIV[0].DIV[0].DIV[0]);
 		var standingNode = null;
@@ -53,7 +56,7 @@ RaceDetailReader.prototype.Parse = function (htmlString) {
 			return; // errore
 		
 		self.SetRaceDescription(standingNode);
-		self.AddCollectionFromTable(standingNode.TABLE[0], self.DbWrap);
+		xmlNav.AddCollectionFromTable(standingNode.TABLE[0], self.DbWrap);
 		
 	});
   	

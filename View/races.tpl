@@ -11,7 +11,7 @@
 			
 			<div class="backTo"><a href="./home">Back to Home</a></div>
 		(: races ~
-		<a stryle="alink" href="[:DestinationUrl:]">
+		<a stryle="raceLink" href="[:DestinationUrl:]">
 			<div class="race" 
 						style="background-image:url([:Img:])">
 				<p>

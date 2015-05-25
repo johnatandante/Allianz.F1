@@ -24,7 +24,7 @@ var RacesDbWrap = function () {
 		};
 	};
 	
-	this.SetLocationDate = function(url, race) {
+	this.SetLocationData = function(url, race) {
 		var tmpStr = url.toLowerCase()
 						.replace(".html", "");
 						

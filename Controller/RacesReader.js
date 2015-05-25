@@ -28,11 +28,11 @@ RacesReader.prototype.Parse = function (htmlString) {
 		}
 		
 		var divNode = null;
-		var firstNodeCollection = jsonresult.HTML.BODY[0].DIV[0].MAIN[0].DIV;
-		if(ErrorHandler.isPageNotFound(firstNodeCollection)) {
+		if(ErrorHandler.isPageNotFound(jsonresult.HTML.BODY[0])) {
 			return;
 		}
 		
+		var firstNodeCollection = jsonresult.HTML.BODY[0].DIV[0].MAIN[0].DIV;
 		firstNodeCollection.forEach(function (element) {
 			if(divNode == null)
 				divNode = xmlNav.NavigateIntoInnerNode("DIV", element, standingsClass);

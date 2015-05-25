@@ -94,9 +94,9 @@ XmlCollectionNavigator.prototype.AddCollectionFromDiv = function (JsonDIVNode, d
 	var race = ParseTrItem(sectionNode.P, dbWrap.GetNewItem);
 	race.RaceName = sectionNode.H4[0]["_"];
 	
-	dbWrap.SetLocationData(race, anchorNode["$"].HREF);
+	dbWrap.SetLocationData(anchorNode["$"].HREF, race);
 	
-	var imgNode = self.GetNodeFromCollection(anchorNode.ARTICLE[0].FIGURE[0], "IMG", "hidden");
+	var imgNode = this.GetNodeFromCollection(anchorNode.ARTICLE[0].FIGURE[0], "IMG", "hidden");
 	if(imgNode != null)
 		dbWrap.SetImgData(imgNode["$"].SRC, race);
 	

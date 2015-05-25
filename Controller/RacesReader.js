@@ -27,12 +27,12 @@ RacesReader.prototype.Parse = function (htmlString) {
 			return;
 		}
 		
-		var divNode = null;
 		if(ErrorHandler.isPageNotFound(jsonresult.HTML.BODY[0])) {
 			return;
 		}
 		
 		var firstNodeCollection = jsonresult.HTML.BODY[0].DIV[0].MAIN[0].DIV;
+		var divNode = null;
 		firstNodeCollection.forEach(function (element) {
 			if(divNode == null)
 				divNode = xmlNav.NavigateIntoInnerNode("DIV", element, standingsClass);
@@ -43,7 +43,6 @@ RacesReader.prototype.Parse = function (htmlString) {
 		
 		divNode.DIV.forEach(function(divElement) {
 			xmlNav.AddCollectionFromDiv(divElement, self.DbWrap);
-			
 		});
 		
 	});

@@ -1,36 +1,37 @@
 body {
 	font-family: "Verdana";
 	background: darkgray;
-	color: black;
+	color: dimgray;
 	font-size: 12;
 }
 
 h1 {
-	color: red;
-	font-size: 16;
-}
-
-
-h2 {
-	color: red;
+	color: darkred;
 	font-size: 14;
 	font-weight: bold;
 }
 
+
+h2 {
+	color: darkred;
+	font-size: 12;
+	font-weight: bold;
+}
+
 h3 {
-	color: red;
+	color: darkred;
 	font-size: 12;
 	font-weight: bold;
 }
 
 h4 {
-	color: red;
+	color: darkred;
 	font-size: 12;
 }
 
 DIV.race {
-	max-width: 440px;
-	min-height: 240px;
+	max-width: 320px;
+	min-height: 180px;
 	
 }
 

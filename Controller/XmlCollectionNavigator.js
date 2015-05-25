@@ -57,6 +57,12 @@ var ParseTrItem = function (node, getNewItem) {
 			case "teaser-date":
 				item.RaceDate = child["_"];
 				break;
+			case "car":
+				item.Car = child.IMG[0]["$"].SRC;
+				break;
+        	case "points":
+				item.Points = child["_"];
+				break;
 		}
 	});
 	

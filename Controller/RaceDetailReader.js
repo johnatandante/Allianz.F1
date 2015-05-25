@@ -9,10 +9,8 @@ var xmlNav = require('./XmlCollectionNavigator.js');
 var standingsClass = "standings";
 
 var RaceDetailReader = function() {
-	this.DbWrap = {};
-	
+	this.DbWrap = {};	
 };
-
 
 RaceDetailReader.prototype.SetRaceDescription = function (divNode) {
 	this.DbWrap.RaceDescription = divNode.H3[0]["_"];
@@ -53,7 +51,7 @@ RaceDetailReader.prototype.Parse = function (htmlString) {
 		});
 		
 		if(standingNode == null)
-			return; // errore
+			return;
 		
 		self.SetRaceDescription(standingNode);
 		xmlNav.AddCollectionFromTable(standingNode.TABLE[0], self.DbWrap);

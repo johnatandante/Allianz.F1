@@ -9,19 +9,19 @@
 		<h1>Race (:raceDescription:)</h1>
 		<div class="driverContainer">
 			<div class="backTo"><a href="./races">Back to Races</a></div>
-		(: details ~
-		<div class="driver">
-			<p>
-				<span class="position">Position: [:Position:]</span>
-				<span class="nationality">[:Nationality:]</span>
-				<span class="firstName">[:FirstName:]</span>
-				<span class="lastName">[:LastName:]</span>
-				<span class="team">[:Team:]</span>
-				<span class="time">[:Time:]</span>
-				<span class="ponts">Points: [:Points:]</span>
-			</p>
-		</div>
-		:)
+				(: details ~
+				<div class="driver">
+					<p>
+						<span class="position">Position: [:Position:]</span>
+						<span class="nationality">[:Nationality:]</span>
+						<span class="firstName">[:FirstName:]</span>
+						<span class="lastName">[:LastName:]</span>
+						<span class="team">[:Team:]</span>
+						<span class="time">[:Time:]</span>
+						<span class="ponts">Points: [:Points:]</span>
+					</p>
+				</div>
+				:)
 			<div class="backTo"><a href="./races">Back to Races</a></div>
 		</div>
 	</body>

@@ -10,19 +10,19 @@
 		<div class="raceContainer">
 			
 			<div class="backTo"><a href="./home">Back to Home</a></div>
-		(: races ~
-		<a stryle="raceLink" href="[:DestinationUrl:]">
-			<div class="race" 
-						style="background-image:url([:Img:])">
-				<p>
-					<span class="location">Location: [:Location:]</span>
-					<span class="racename">[:RaceName:]</span>
-					<span class="racedate">[:RaceDate:]</span>
-					<span class="winner">Winner: [:Winner:]</span>
-				</p>
-			</div>
-		</a>
-		:)
+				(: races ~
+				<a class="raceLink" href="[:DestinationUrl:]">
+					<div class="race" 
+								style="background-image:url([:Img:])">
+						<p>
+							<span class="location">Location: [:Location:]</span>
+							<span class="racename">[:RaceName:]</span>
+							<span class="racedate">[:RaceDate:]</span>
+							<span class="winner">Winner: [:Winner:]</span>
+						</p>
+					</div>
+				</a>
+				:)
 		
 			<div class="backTo"><a href="./home">Back to Home</a></div>
 		</div>

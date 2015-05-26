@@ -1,8 +1,12 @@
-
+var http = require('http');
+var xml2js = require('xml2js');
 var ErrorHandler = require('./ErrorHandler');
 
 var HttpDataClientParser = function() {
-	
+	this.ParseOptions = {
+				trim: true,
+				strict: false,
+			};
 };
 
 HttpDataClientParser.prototype.Read = function (handler, onSuccess) {
@@ -10,8 +14,9 @@ HttpDataClientParser.prototype.Read = function (handler, onSuccess) {
 		onSuccess();
 		return;
 	}
-
-	require('http').get(handler.ReadOptions, function(response) {
+	
+	var self = this;
+	http.get(handler.ReadOptions, function(response) {
 		var htmlString = '';
 		response.setEncoding('utf8');
 		
@@ -22,14 +27,7 @@ HttpDataClientParser.prototype.Read = function (handler, onSuccess) {
 		});
 		
 		response.on('end', function () {
-			
-			var xml2js = require('xml2js');
-			var options = {
-				trim: true,
-				strict: false,
-			};
-			
-		    var parser = new xml2js.Parser(options);
+		    var parser = new xml2js.Parser(self.ParseOptions);
 		    parser.parseString(htmlString.substring(0, htmlString.length), 
 								function (err, jsonresult) {
 									handler.Parse(err, jsonresult);

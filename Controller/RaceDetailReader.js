@@ -34,73 +34,36 @@ RaceDetailReader.prototype.SetRaceName = function (divNode) {
 	this.DbWrap.RaceName = divNode.A[0]["_"].toLowerCase();
 };
 
-RaceDetailReader.prototype.Parse = function (htmlString) {
+RaceDetailReader.prototype.Parse = function (err, jsonresult) {
 	var self = this;
-	
 	self.DbWrap.Clear();
 	
-	var xml2js = require('xml2js');
-	var options = {
-		trim: true,
-		strict: false,
-	};
-	
-    var parser = new xml2js.Parser(options);
-    parser.parseString(htmlString.substring(0, htmlString.length), function (err, jsonresult) {
-		if(err) {
-			console.log(err);
-			return;
-		}
-		
-		if(ErrorHandler.isPageNotFound(jsonresult.HTML.BODY[0])) {
-			return;
-		}
-		
-		var firstNodeCollection = jsonresult.HTML.BODY[0].DIV[0].MAIN[0].ARTICLE[0];
-		if(firstNodeCollection == null)
-			return;
-		
-		self.SetRaceName(firstNodeCollection.DIV[0].DIV[0].DIV[0]);
-		var standingNode = null;
-		firstNodeCollection.DIV.forEach(function (element) {
-			if(standingNode == null)
-				standingNode = xmlNav.NavigateIntoInnerNode("DIV", element, standingsClass);
-		});
-		
-		if(standingNode == null)
-			return;
-		
-		self.SetRaceDescription(standingNode);
-		xmlNav.AddCollectionFromTable(standingNode.TABLE[0], self.DbWrap);
-		
-	});
-  	
-};
-
-var Read = function (self, onSuccess) {
-	if(self.CanLoadData()){
-		onSuccess();
+	if(err) {
+		console.log(err);
 		return;
 	}
 	
-	require('http').get(self.DbWrap.ReadOptions, function(response) {
-		var str = '';
-		response.setEncoding('utf8');
-		
-		response.on('error', ErrorHandler.onUrlKo);
-		
-		response.on('data', function (chunk) {
-			str += chunk;
-		});
-		
-		response.on('end', function () {
-			self.Parse(str);
-			console.log("Reader", self.DbWrap.Name, ".prototype.Read - Elements: ", 
-						self.DbWrap.Count);
-			onSuccess();
-		});
-	}).end();
+	if(ErrorHandler.isPageNotFound(jsonresult.HTML.BODY[0])) {
+		return;
+	}
+
+	var firstNodeCollection = jsonresult.HTML.BODY[0].DIV[0].MAIN[0].ARTICLE[0];
+	if(firstNodeCollection == null)
+		return;
 	
+	self.SetRaceName(firstNodeCollection.DIV[0].DIV[0].DIV[0]);
+	var standingNode = null;
+	firstNodeCollection.DIV.forEach(function (element) {
+		if(standingNode == null)
+			standingNode = xmlNav.NavigateIntoInnerNode("DIV", element, standingsClass);
+	});
+	
+	if(standingNode == null)
+		return;
+	
+	self.SetRaceDescription(standingNode);
+	xmlNav.AddCollectionFromTable(standingNode.TABLE[0], self.DbWrap);
+  	
 };
 
 module.exports = new RaceDetailReader();

@@ -20,41 +20,31 @@ var DriversReader = function() {
 	
 };
 
-DriversReader.prototype.Parse = function (htmlString) {
-	var xml2js = require('xml2js');
-	var options = {
-		trim: true,
-		strict: false,
-	};
-	
+DriversReader.prototype.Parse = function (err, jsonresult) {
 	var self = this;
-    var parser = new xml2js.Parser(options);
-    parser.parseString(htmlString.substring(0, htmlString.length), function (err, jsonresult) {
-		if(err){
-			console.log(err);
-			return;
-		}
-		
-		if(ErrorHandler.isPageNotFound(jsonresult.HTML.BODY[0])) {
-			return;
-		}
-		
-		var firstNodeCollection = jsonresult.HTML.BODY[0].DIV[0].MAIN[0].ARTICLE[0];
-		if(firstNodeCollection == null)
-			return;
-		
-		var standingNode = null;
-		firstNodeCollection.DIV.forEach(function (element) {
-			if(standingNode == null)
-				standingNode = xmlNav.NavigateIntoInnerNode("DIV", element, standingsClass);
-		});
-		
+	if(err){
+		console.log(err);
+		return;
+	}
+	
+	if(ErrorHandler.isPageNotFound(jsonresult.HTML.BODY[0])) {
+		return;
+	}
+	
+	var firstNodeCollection = jsonresult.HTML.BODY[0].DIV[0].MAIN[0].ARTICLE[0];
+	if(firstNodeCollection == null)
+		return;
+	
+	var standingNode = null;
+	firstNodeCollection.DIV.forEach(function (element) {
 		if(standingNode == null)
-			return;
-		
-		xmlNav.AddCollectionFromTable(standingNode.TABLE[0], self.DbWrap);
-		
+			standingNode = xmlNav.NavigateIntoInnerNode("DIV", element, standingsClass);
 	});
+	
+	if(standingNode == null)
+		return;
+	
+	xmlNav.AddCollectionFromTable(standingNode.TABLE[0], self.DbWrap);
    
 };
 

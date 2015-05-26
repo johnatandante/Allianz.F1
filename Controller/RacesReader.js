@@ -21,66 +21,30 @@ var RacesReader = function() {
 	
 };
 
-RacesReader.prototype.Parse = function (htmlString) {
-	var xml2js = require('xml2js');
-	var options = {
-		trim: true,
-		strict: false,
-	};
-	
+RacesReader.prototype.Parse = function (err, jsonresult) {	
 	var self = this;
-    var parser = new xml2js.Parser(options);
-    parser.parseString(htmlString.substring(0, htmlString.length), function (err, jsonresult) {
-		if(err){
-			console.log(err);
-			return;
-		}
-		
-		if(ErrorHandler.isPageNotFound(jsonresult.HTML.BODY[0])) {
-			return;
-		}
-		
-		var firstNodeCollection = jsonresult.HTML.BODY[0].DIV[0].MAIN[0].DIV;
-		var divNode = null;
-		firstNodeCollection.forEach(function (element) {
-			if(divNode == null)
-				divNode = xmlNav.NavigateIntoInnerNode("DIV", element, standingsClass);
-		});
-		
-		if(divNode == null)
-			return;
-		
-		divNode.DIV.forEach(function(divElement) {
-			xmlNav.AddCollectionFromDiv(divElement, self.DbWrap);
-		});
-		
-	});
-  	
-};
-
-var Read = function (self, onSuccess) {
-	if(self.CanLoadData()){
-		onSuccess();
+	if(err){
+		console.log(err);
 		return;
 	}
-
-	require('http').get(self.DbWrap.ReadOptions, function(response) {
-		var str = '';
-		response.setEncoding('utf8');
-		
-		response.on('error', ErrorHandler.onUrlKo);
-		
-		response.on('data', function (chunk) {
-			str += chunk;
-		});
-		
-		response.on('end', function () {
-			self.Parse(str);
-			console.log("Reader", self.DbWrap.Name, ".prototype.Read - Elements: ", 
-						self.DbWrap.Count);
-			onSuccess();
-		});
-	}).end();
+	
+	if(ErrorHandler.isPageNotFound(jsonresult.HTML.BODY[0])) {
+		return;
+	}
+	
+	var firstNodeCollection = jsonresult.HTML.BODY[0].DIV[0].MAIN[0].DIV;
+	var divNode = null;
+	firstNodeCollection.forEach(function (element) {
+		if(divNode == null)
+			divNode = xmlNav.NavigateIntoInnerNode("DIV", element, standingsClass);
+	});
+	
+	if(divNode == null)
+		return;
+	
+	divNode.DIV.forEach(function(divElement) {
+		xmlNav.AddCollectionFromDiv(divElement, self.DbWrap);
+	});
 	
 };
 

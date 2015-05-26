@@ -9,7 +9,21 @@ var xmlNav = require('./XmlCollectionNavigator.js');
 var standingsClass = "standings";
 
 var RaceDetailReader = function() {
-	this.DbWrap = {};	
+	this.DbWrap = require('../Model/RaceDetailDbWrap.js');
+	
+	this.CanLoadData = function(){
+		return true;
+	};
+	
+	this.SetRace = function (race) {
+		this.ReadOptions.path = raceTemplatePathUrl.replace(placeholder, race);
+	};
+	
+	this.ReadOptions = {
+	  host: f1host,
+	  path: raceTemplatePathUrl.replace(placeholder, this.Race),
+	};
+	
 };
 
 RaceDetailReader.prototype.SetRaceDescription = function (divNode) {
@@ -21,13 +35,16 @@ RaceDetailReader.prototype.SetRaceName = function (divNode) {
 };
 
 RaceDetailReader.prototype.Parse = function (htmlString) {
+	var self = this;
+	
+	self.DbWrap.Clear();
+	
 	var xml2js = require('xml2js');
 	var options = {
 		trim: true,
 		strict: false,
 	};
 	
-	var self = this;
     var parser = new xml2js.Parser(options);
     parser.parseString(htmlString.substring(0, htmlString.length), function (err, jsonresult) {
 		if(err) {
@@ -60,18 +77,13 @@ RaceDetailReader.prototype.Parse = function (htmlString) {
   	
 };
 
-RaceDetailReader.prototype.Read = function (race, onSuccess) {
-	this.DbWrap = require('../Model/RaceDetailDbWrap.js');
-	this.DbWrap.Clear();
+var Read = function (self, onSuccess) {
+	if(self.CanLoadData()){
+		onSuccess();
+		return;
+	}
 	
-	var self = this;
-
-	var options = {
-	  host: f1host,
-	  path: raceTemplatePathUrl.replace(placeholder, race),
-	};
-	
-	require('http').get(options, function(response) {
+	require('http').get(self.DbWrap.ReadOptions, function(response) {
 		var str = '';
 		response.setEncoding('utf8');
 		
@@ -83,8 +95,8 @@ RaceDetailReader.prototype.Read = function (race, onSuccess) {
 		
 		response.on('end', function () {
 			self.Parse(str);
-			console.log("RaceDetailReader.prototype.Read - Elements: ", 
-						self.DbWrap.RaceDetail.length);
+			console.log("Reader", self.DbWrap.Name, ".prototype.Read - Elements: ", 
+						self.DbWrap.Count);
 			onSuccess();
 		});
 	}).end();

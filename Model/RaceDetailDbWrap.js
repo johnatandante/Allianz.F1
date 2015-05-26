@@ -1,7 +1,9 @@
 // Race Detail Db Wrap
 var RaceDetailDbWrap = function () {
+	this.Name = "Race Detail";
 	this.RaceName = "";
 	this.RaceDescription = "";
+	
 	this.RaceDetail = [];
 	
 	this.Clear = function() {
@@ -25,6 +27,10 @@ var RaceDetailDbWrap = function () {
 				Time : "",
 				Points: -1,
 		};
+	};
+	
+	this.Count = function () {
+		return this.RaceDetail.length;
 	};
 	
 };

@@ -1,9 +1,15 @@
 // Drivers Db Wrap
 var DriversDbWrap = function () {
+	this.Name = "Drivers";
 	this.Drivers = [];	
 	
 	this.Clear = function() {
 		this.Drivers = [];
+	};
+	
+	this.Count = function () {
+		var self = this;
+		return self.Drivers.length;
 	};
 	
 	this.Add = function(driver) {
@@ -22,6 +28,7 @@ var DriversDbWrap = function () {
 					Points: -1,
 		};
 	};
+	
 };
 
 module.exports = new DriversDbWrap();

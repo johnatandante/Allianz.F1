@@ -8,12 +8,16 @@ var xmlNav = require('./XmlCollectionNavigator.js');
 var standingsClass = "standings";
 
 var DriversReader = function() {
-	this.DbWrap = {};
+	this.DbWrap = require('../Model/DriversDbWrap.js');
+	this.CanLoadData = function(){
+		return this.DbWrap.Count() == 0;
+	};
 	
-};
-
-var onUrlKo = function (reason) {
-	console.log("Ko ", f1DriversUrl, " - ", reason);
+	this.ReadOptions = {
+	  host: f1host,
+	  path: f1DriversUrl
+	};
+	
 };
 
 DriversReader.prototype.Parse = function (htmlString) {
@@ -54,37 +58,5 @@ DriversReader.prototype.Parse = function (htmlString) {
    
 };
 
-DriversReader.prototype.Read = function (onSuccess) {
-	this.DbWrap = require('../Model/DriversDbWrap.js');
-	if(this.DbWrap.Drivers.length > 0){
-		onSuccess();
-		return;
-	}
-	
-	var dbWrap = this.DbWrap;
-	var options = {
-	  host: f1host,
-	  path: f1DriversUrl
-	};
-	
-	var self = this;
-	require('http').get(options, function(response) {
-		var str = '';
-		response.setEncoding('utf8');
-		
-		response.on('error', ErrorHandler.onUrlKo);
-		
-		response.on('data', function (chunk) {
-			str += chunk;
-		});
-		
-		response.on('end', function () {
-			self.Parse(str);
-			console.log("DriversReader.prototype.Read - Elements: ", 
-						dbWrap.Drivers.length);
-			onSuccess();
-		});
-	}).end();
-};
 
 module.exports = new DriversReader();

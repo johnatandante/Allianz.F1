@@ -3,10 +3,15 @@ var f1host = "www.formula1.com";
 var raceTemplatePathUrl = "./racedetail?race={0}";
 
 var RacesDbWrap = function () {
+	this.Name = "Races";
 	this.Races = [];
 
 	this.Clear = function() {
 		this.Races = [];
+	};
+	
+	this.Count = function () {
+		return this.Races.length;
 	};
 	
 	this.Add = function(race) {

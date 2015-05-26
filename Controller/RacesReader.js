@@ -8,7 +8,16 @@ var ErrorHandler = require('./ErrorHandler');
 var xmlNav = require('./XmlCollectionNavigator.js');
 
 var RacesReader = function() {
-	this.DbWrap = {};
+	this.DbWrap = require('../Model/RacesDbWrap.js');
+	
+	this.CanLoadData = function(){
+		return this.DbWrap.Count() == 0;
+	};
+	
+	this.ReadOptions = {
+	  host: f1host,
+	  path: f1RacesUrl
+	};
 	
 };
 
@@ -49,23 +58,13 @@ RacesReader.prototype.Parse = function (htmlString) {
   	
 };
 
-
-RacesReader.prototype.Read = function (onSuccess) {
-	this.DbWrap = require('../Model/RacesDbWrap.js');
-	if(this.DbWrap.Races.length > 0) {
+var Read = function (self, onSuccess) {
+	if(self.CanLoadData()){
 		onSuccess();
 		return;
 	}
-	
-	var dbWrap = this.DbWrap;
 
-	var options = {
-	  host: f1host,
-	  path: f1RacesUrl
-	};
-	
-	self = this;
-	require('http').get(options, function(response) {
+	require('http').get(self.DbWrap.ReadOptions, function(response) {
 		var str = '';
 		response.setEncoding('utf8');
 		
@@ -77,11 +76,10 @@ RacesReader.prototype.Read = function (onSuccess) {
 		
 		response.on('end', function () {
 			self.Parse(str);
-			console.log("RacesReader.prototype.Read - Elements: ", 
-						dbWrap.Races.length);
+			console.log("Reader", self.DbWrap.Name, ".prototype.Read - Elements: ", 
+						self.DbWrap.Count);
 			onSuccess();
 		});
-		
 	}).end();
 	
 };

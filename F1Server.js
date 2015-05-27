@@ -46,7 +46,8 @@ var WriteContent = function(res, data) {
 var HomeResponse = function(req, res, chain) {
   bind.toFile(path.join(__dirname, '/View/home.tpl'), 
     {
-      id: 1
+       title : "Allianz.F1 Home", 
+        id: 1
     }, function(data) {
       WriteContent(res, data);
     });
@@ -56,7 +57,10 @@ var DriversResponse = function(req, res, chain) {
   
   HttpDataClientParser.Read(DriversReader, function() {
     bind.toFile(path.join(__dirname, '/View/drivers.tpl'), 
-      { drivers : DriversReader.DbWrap.Drivers }
+      { 
+          title : "Allianz.F1 Drivers", 
+          drivers : DriversReader.DbWrap.Drivers 
+        }
       , function(data) {
         WriteContent(res, data);
       });
@@ -68,6 +72,7 @@ var RacesResponse = function(req, res, chain) {
     HttpDataClientParser.Read(RacesReader, function() {
       bind.toFile(path.join(__dirname, '/View/races.tpl'), 
         {
+          title : "Allianz.F1 Races", 
           races : RacesReader.DbWrap.Races
         }, function(data) {
           WriteContent(res, data);
@@ -86,6 +91,7 @@ var RacesDetailResponse = function(req, res, chain) {
     HttpDataClientParser.Read(RaceDetailReader,  function(){
       bind.toFile(path.join(__dirname, '/View/racedetail.tpl'), 
         {
+          title : "Allianz.F1 Race " + RaceDetailReader.DbWrap.RaceDescription, 
           raceDescription : RaceDetailReader.DbWrap.RaceDescription,
           details : RaceDetailReader.DbWrap.RaceDetail
         }, function(data) {
@@ -98,7 +104,10 @@ var RacesDetailResponse = function(req, res, chain) {
 };
 
 var AdminResponse = function(req, res, chain) {
-  bind.toFile(path.join(__dirname, '/View/admin.tpl'), {
+  bind.toFile(path.join(__dirname, '/View/admin.tpl'), 
+    {
+    
+        title : "Allianz.F1 Admin Page", 
         name: 'Dante',
     }, function(data) {
       WriteContent(res, data);

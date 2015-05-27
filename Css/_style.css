@@ -1,0 +1,56 @@
+body {
+	font-family: "Verdana";
+	background: darkgray;
+	color: dimgray;
+	font-size: 12;
+}
+
+h1 {
+	color: darkred;
+	font-size: 14;
+	font-weight: bold;
+}
+
+
+h2 {
+	color: darkred;
+	font-size: 12;
+	font-weight: bold;
+}
+
+h3 {
+	color: darkred;
+	font-size: 12;
+	font-weight: bold;
+}
+
+h4 {
+	color: darkred;
+	font-size: 12;
+}
+
+DIV.race {
+	max-width: 320px;
+	min-height: 180px;
+	
+}
+
+/* unvisited link */
+A.raceLink:link {
+    color: white;
+}
+
+/* visited link */
+A.raceLink:visited {
+    color: darkgray;
+}
+
+/* mouse over link */
+A.raceLink:hover {
+    color: lightgray;
+}
+
+/* selected link */
+A.raceLink:active {
+    color: whitesmoke;
+}

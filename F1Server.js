@@ -22,10 +22,7 @@ var F1Server = function (dispatcherObj) {
   
   this.Run = function (param) {
     var self = this;
-      
-    if(process == undefined) {
-    	process = { };
-    }
+    
     self.server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
     self.server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
     
@@ -104,13 +101,16 @@ var RacesDetailResponse = function(req, res, chain) {
 };
 
 var AdminResponse = function(req, res, chain) {
-  bind.toFile(path.join(__dirname, '/View/admin.tpl'), 
-    {
-    
-        title : "Allianz.F1 Admin Page", 
-        name: 'Dante',
-    }, function(data) {
-      WriteContent(res, data);
+  require('./Controller/Db').Connect(
+    function() { 
+      bind.toFile(path.join(__dirname, '/View/admin.tpl')
+                  , {
+                      title : "Allianz.F1 Admin Page", 
+                      name: 'Dante',
+                  }
+                  , function(data) {
+                    WriteContent(res, data);
+                    });
     });
 };
 

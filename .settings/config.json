@@ -1,0 +1,13 @@
+
+Please make note of these MongoDB credentials:
+  RockMongo User: admin
+  RockMongo Password: _B3KyD5Pxqry
+URL: https://allianzf1-johnatandante.rhcloud.com/rockmongo/
+
+MongoDB 2.4 database added.  Please make note of these credentials:
+
+   Root User:     admin
+   Root Password: tVrL9qk3C7Y-
+   Database Name: jenkins
+
+Connection URL: mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/

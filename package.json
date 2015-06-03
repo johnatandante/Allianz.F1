@@ -1,4 +1,66 @@
-"scripts": {
-  "start": "supervisor server.js"
-},
-"main": "server.js"
+{
+  "author": {
+    "name": "Dante BDel Favero",
+    "email": "dante.delfavero@gmail.com"
+  },
+  "dependencies": {
+    "bind": ">=0.1.7",
+    "cloud-env": ">=0.1.0",
+    "fs": ">=0.0.2",
+    "guid": ">=0.0.12",
+    "httpdispatcher": ">=0.4.0",
+    "JSON": ">=1.0.0",
+    "mime": ">=1.2.5",
+    "mongoose": ">=4.0.3",
+    "path": ">=0.11.14",
+    "q": ">=1.4.0",
+    "q-io": ">=1.12.0",
+    "url": ">=0.10.3",
+    "util": ">=0.10.3",
+    "ws": ">=0.7.1",
+    "xml2js": ">=0.4.8"
+  },
+  "description": "A F1 Fantasy Game prototype",
+  "devDependencies": {},
+  "keywords": [
+    "util",
+    "httpdispatcher",
+    "dispatcher"
+  ],
+  "main": "server.js",
+  "name": "Allianz.F1",
+  "repository": {
+    "url": "https://github.com/johnatandante/Allianz.F1.git",
+    "type": "git"
+  },
+  "version": "0.0.1",
+  "_npmUser": {
+      "name": "johnatandante",
+      "email": "dante.delfavero@gmail.com"
+  },
+  "_id": "allianzf1@0.0.1",
+  "engines": {
+    "node": "*"
+  },
+  "_engineSupported": true,
+  "_npmVersion": "1.0.106",
+  "_nodeVersion": "v0.11.0",
+  "_defaultsLoaded": true,
+  "maintainers": [
+    {
+      "name": "johnatandante",
+      "email": "dante.delfavero@gmail.com"
+    }
+  ],
+  "directories": {},
+  "bugs": {
+    "url": "https://github.com/johnatandante/Allianz.F1/issues"
+  },
+  
+  "readme": "ERROR: No README data found!",
+  "homepage": "https://github.com/johnatandante/Allianz.F1/",
+   
+  "scripts": {
+    "start": "supervisor server.js"
+  }
+}

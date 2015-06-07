@@ -12,8 +12,6 @@ This is a Node.js server using these modules:
 * JSON
 * q-io
 * node-uuid/uuid
-* mongodb
-* mongoose
 
 Important: install ASPNET5 first of all, then run the npm install <package>
 

@@ -22,7 +22,10 @@ var F1Server = function (dispatcherObj) {
   
   this.Run = function (param) {
     var self = this;
-    
+      
+    if(process == undefined) {
+    	process = { };
+    }
     self.server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
     self.server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
     
@@ -43,8 +46,7 @@ var WriteContent = function(res, data) {
 var HomeResponse = function(req, res, chain) {
   bind.toFile(path.join(__dirname, '/View/home.tpl'), 
     {
-       title : "Allianz.F1 Home", 
-        id: 1
+      id: 1
     }, function(data) {
       WriteContent(res, data);
     });
@@ -54,10 +56,7 @@ var DriversResponse = function(req, res, chain) {
   
   HttpDataClientParser.Read(DriversReader, function() {
     bind.toFile(path.join(__dirname, '/View/drivers.tpl'), 
-      { 
-          title : "Allianz.F1 Drivers", 
-          drivers : DriversReader.DbWrap.Drivers 
-        }
+      { drivers : DriversReader.DbWrap.Drivers }
       , function(data) {
         WriteContent(res, data);
       });
@@ -69,7 +68,6 @@ var RacesResponse = function(req, res, chain) {
     HttpDataClientParser.Read(RacesReader, function() {
       bind.toFile(path.join(__dirname, '/View/races.tpl'), 
         {
-          title : "Allianz.F1 Races", 
           races : RacesReader.DbWrap.Races
         }, function(data) {
           WriteContent(res, data);
@@ -88,7 +86,6 @@ var RacesDetailResponse = function(req, res, chain) {
     HttpDataClientParser.Read(RaceDetailReader,  function(){
       bind.toFile(path.join(__dirname, '/View/racedetail.tpl'), 
         {
-          title : "Allianz.F1 Race " + RaceDetailReader.DbWrap.RaceDescription, 
           raceDescription : RaceDetailReader.DbWrap.RaceDescription,
           details : RaceDetailReader.DbWrap.RaceDetail
         }, function(data) {
@@ -101,16 +98,10 @@ var RacesDetailResponse = function(req, res, chain) {
 };
 
 var AdminResponse = function(req, res, chain) {
-  require('./Controller/Db').Connect(
-    function() { 
-      bind.toFile(path.join(__dirname, '/View/admin.tpl')
-                  , {
-                      title : "Allianz.F1 Admin Page", 
-                      name: 'Dante',
-                  }
-                  , function(data) {
-                    WriteContent(res, data);
-                    });
+  bind.toFile(path.join(__dirname, '/View/admin.tpl'), {
+        name: 'Dante',
+    }, function(data) {
+      WriteContent(res, data);
     });
 };
 

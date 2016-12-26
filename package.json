@@ -11,7 +11,7 @@
     "url": "git+https://github.com/johnatandante/Allianz.F1.git",
     "type": "git"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "_npmUser": {
     "name": "johnatandante",
     "email": "dante.delfavero@gmail.com"
@@ -35,8 +35,8 @@
   "homepage": "https://github.com/johnatandante/Allianz.F1/",
   "license": "GPL-3.0",
   "scripts": {
-    "start": "node ./src/F1Server.js",
+    "start": "node ./src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "main": "./src/F1Server.js"
+  "main": "./src/server.js"
 }

@@ -1,33 +1,26 @@
-'use strict';
-
-var F1Server = function () {
+module.exports = function (port, ip_address) {
   
-  this.server_port = 8080;
-  this.server_ip_address = "127.0.0.1";
-  this.app = null;
+  this.server_port = port || 8080;
+  this.server_ip_address = ip_address || "127.0.0.1";
 
   this.Run = function () {
     var self = this;
-  
-    self.server_port = process.env.OPENSHIFT_NODEJS_PORT || self.server_port;
-    self.server_ip_address = process.env.OPENSHIFT_NODEJS_IP || self.server_ip_address;
-    
+
     var express = require('express');
+    var main = require('./routes/main');
 
-    self.app = express();
-    self.app.get('/', function(request, response){
-      response.send("Server "+self.server_ip_address+" up and running on port" + self.server_port);
+    var app = express();
 
-    });
-    self.app
+    app.use('/', main);
+
+    app
       .listen(self.server_port, function(){
         console.log("listening on port " + self.server_port);
 
       });
     
+    return app;
+
   };
   
 };
-
-(new F1Server())
-  .Run();

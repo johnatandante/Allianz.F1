@@ -16,8 +16,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "angular#^1.6.1",
-    "bootstrap": "bootstrap#^3.3.7",
-    "jquery" : "jquery#1.9.1"
+    "angular": "^1.6.1",
+    "bootstrap": "^3.3.7",
+    "jquery": "^1.9.1",
+    "angular-route": "^1.6.1",
+    "angular-sanitize": "^1.6.1",
+    "angular-animate": "^1.6.1"
   }
 }

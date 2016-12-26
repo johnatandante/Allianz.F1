@@ -1,3 +1,7 @@
+var express = require('express');
+var mainRoutes = require('./routes/main');
+var apiRoutes = require('./routes/api');
+
 module.exports = function (port, ip_address) {
   
   this.server_port = port || 8080;
@@ -5,13 +9,10 @@ module.exports = function (port, ip_address) {
 
   this.Run = function () {
     var self = this;
-
-    var express = require('express');
-    var main = require('./routes/main');
-
     var app = express();
 
-    app.use('/', main);
+    app.use('/', mainRoutes);
+    app.use('/api', apiRoutes);
 
     app
       .listen(self.server_port, function(){

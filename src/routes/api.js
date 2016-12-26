@@ -1,9 +1,7 @@
 var router = require('express').Router();
 
-// Todo: Rewrite Url for AngularJs
-
 router.get('/', function(request, response){
-      response.send("Server up and running");
+      response.status(404).send('Api not yet implemented');
     });
 
 module.exports = router;

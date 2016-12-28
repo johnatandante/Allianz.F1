@@ -4,7 +4,7 @@ var menuControllers = angular.module('menuControllers',
         'ngAnimate', 'ngSanitize', 'ui.bootstrap'
     ]);
 
-menuControllers.controller('menu',
+menuControllers.controller('menuController',
     ['$scope', function ($scope) {
         var self = this;
 

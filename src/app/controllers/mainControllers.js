@@ -1,10 +1,12 @@
-var mainControllers = angular.module('mainControllers', 
+var mainControllers = angular.module('mainControllers'
+    , 
     [
         //'localDataService', 'ngAnimate', 'ngSanitize', 
         //'ui.bootstrap'
-    ]);
+    ]
+    );
 
-mainControllers.controller('main',
+mainControllers.controller('mainController',
     ['$scope', function ($scope) {
         // var self = this;
 

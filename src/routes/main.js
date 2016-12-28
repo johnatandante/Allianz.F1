@@ -3,9 +3,9 @@ var path = require('path');
 
 // Todo: Rewrite Url for AngularJs
 
-router.get('/', function (request, response) {
-  var p = __dirname + "/../index.html";
-  response.sendFile(path.resolve(p));
-});
+router
+  .get('*', function (request, response) {
+    response.sendFile(path.resolve(__dirname + "/../index.html"));
+  });
 
 module.exports = router;

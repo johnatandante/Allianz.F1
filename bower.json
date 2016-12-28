@@ -1,0 +1,26 @@
+{
+  "name": "allianzf1",
+  "description": "A F1 Fantasy Game prototype",
+  "main": "./src/server.js",
+  "authors": [
+    "Dante Del Favero <dante.delfavero@gmail.com>"
+  ],
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/johnatandante/Allianz.F1",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.1",
+    "bootstrap": "^3.3.7",
+    "jquery": "^1.9.1",
+    "angular-route": "^1.6.1",
+    "angular-sanitize": "^1.6.1",
+    "angular-animate": "^1.6.1"
+  }
+}

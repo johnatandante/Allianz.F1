@@ -11,11 +11,11 @@ module.exports = function (port, ip_address) {
   this.Run = function () {
     var self = this;
     var app = express();
-
-    app.use(express.static(path.join(__dirname, 'app')))
-    app.use(express.static(path.join(__dirname, 'css')))
-    app.use(express.static(path.join(__dirname, 'libs')))
-    app.use(express.static(path.join(__dirname, 'assets')))
+    
+    app.use('/app', express.static(__dirname + '/app'));
+    app.use('/css', express.static(__dirname + '/css'));
+    app.use('/libs', express.static(__dirname + '/libs'));
+    app.use('/assets', express.static(__dirname + '/assets'));
 
     app.use('/', mainRoutes);
     app.use('/api', apiRoutes);

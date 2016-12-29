@@ -6,8 +6,6 @@ var menuControllers = angular.module('menuControllers',
 
 menuControllers.controller('menuController',
     ['$scope', function ($scope) {
-        var self = this;
-
         $scope.isNavCollapsed = true;
         $scope.isCollapsed = false;
 

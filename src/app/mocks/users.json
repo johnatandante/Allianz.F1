@@ -1,0 +1,28 @@
+{
+    "data": [
+        {
+            "username": "JohnatanDante",
+            "mail": "dante.delfavero@gmail.com",
+            "authenticationToken": "xxxxxx",
+            "authenticationMode" : "google",
+            "lastLogin": "2016-02-14-10:10:10Z",
+            "team" : "fiji"
+        },
+        {
+            "username": "SonGoku",
+            "mail": "dante.delfavero@libero.it",
+            "authenticationToken": "yyyyyy",
+            "authenticationMode" : "custom",
+            "lastLogin": "2016-02-14-11:10:10Z",
+            "team" : "dtracers"
+        },
+        {
+            "username": "cicci",
+            "mail": "dante.delfavero@allianz.it",
+            "authenticationToken": "zzzz",
+            "authenticationMode" : "google",
+            "lastLogin": "2016-02-14-10:12:10Z",
+            "team" : "cc"
+        }
+    ]
+}

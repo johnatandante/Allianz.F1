@@ -1,0 +1,24 @@
+<races>
+    <main>
+        <h2>Championship</h2>
+        <section>
+            <div class="container-fluid">
+                <p>Here's the race schedule...</p>
+                <div class="item" 
+                    ng-repeat="race in races.Races track by race.round" index="race.round">
+                    <div>
+                        <h3>#{{race.round}} - {{race.raceName}} @ {{race.date}}</h3>
+                        <div>
+                            <p>
+                                {{race.Circuit.circuitName}}, take place in {{race.Circuit.Location.country}} at 
+                                {{race.Circuit.Location.locality}}
+                                <span><a href="{{race.Circuit.url}}">[Wiki-Info]</a></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</races>

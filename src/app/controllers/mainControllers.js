@@ -1,15 +1,17 @@
-var mainControllers = angular.module('mainControllers'
-    , 
-    [
-        //'localDataService', 'ngAnimate', 'ngSanitize', 
-        //'ui.bootstrap'
-    ]
-    );
+angular.module('mainControllers', [
+                    //'localDataService', 'ngAnimate', 'ngSanitize', 
+                    //'ui.bootstrap'
+    ])
+    .controller('mainController',
+        ['$scope', function ($scope) {
+            // var self = this;
 
-mainControllers.controller('mainController',
-    ['$scope', function ($scope) {
-        // var self = this;
-
-    }]);
+            }])
+    .directive("homeFooter", function() {
+        return {
+            restrict: 'E',
+            templateUrl: "/app/views/home/footer.html"
+        }
+    });
 
 

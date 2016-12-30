@@ -1,0 +1,42 @@
+{
+    "data": [
+        {
+            "name": "fiji",
+            "fullName": "Fiji Racers",
+            "leagueId": "AZLeague2016",
+            "drivers": [
+                "alonso",
+                "kimi",
+                "button"
+            ],
+            "chasses": "ferrari",
+            "engine": "mercedes",
+            "totalPoints": "100"
+        },
+        {
+            "name": "dtracers",
+            "fullName": "DT Racers 2016",
+            "leagueId": "AZLeague2016",
+            "drivers": [
+                "raikkonen",
+                "kimi",
+                "button"
+            ],
+            "chasses": "mercedes",
+            "engine": "mercedes",
+            "totalPoints": "220"
+        },
+        {
+            "name": "cc",
+            "fullName": "F1 Tyrel",
+            "leagueId": "AZLeague2016",
+            "drivers": [
+                "mastronaldo",
+                "vettel"
+            ],
+            "chasses": "honda",
+            "engine": "sauber",
+            "totalPoints": "80"
+        }
+    ]
+}

@@ -64,36 +64,8 @@
 
     </header>
     <div ng-view></div>
-    <footer>
-        <div class="container">
-            <a id="about"></a>
-            <div id="title">
-                <div class="credits">
-                    <span>Project maintained by <a href="https://github.com/johnatandante">johnatandante</a></span>
-                </div>
-                <div class="credits">
-                    <div class="credits">
-                        <span>Hosted on: <a href=""><code>OpenShift</code></a></span>
-                    </div>
-                </div>
-                <div class="credits">
-                    <div class="row">
-                        <span>Powered by:</span>
-                    </div>
-                    <div class="row credits powered-by">
-                        <div class="col-md-12">
-                            <a href="https://angular.io"><span class="angular-icon-bkg img-64"></span></a>
-                        </div>
-                        <div class="col-md-12">
-                            <a href="http://bootstrap.io"><span class="bootstrap-icon-bkg img-64"></span></a>
-                        </div>
-                        <div class="col-md-12">
-                            <a href="http://www.github.com"><span class="github-icon-bkg img-64"></span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <footer ng-controller="mainController">
+        <home-footer></home-footer>
     </footer>
 </body>
 

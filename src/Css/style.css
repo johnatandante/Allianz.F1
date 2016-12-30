@@ -2,12 +2,36 @@
   margin-bottom: 0;
 }
 
-.navbar {
-  margin-bottom: 0;
+
+.img-64{
+    padding: 2em;
+    min-width:64px;
+}
+
+/* Bkg Icon 
+-------------------------------------------------- */
+
+.github-icon-bkg{
+    background-image: url("/assets/GitHub-Mark-64px.png");
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 3em;
+}
+.angular-icon-bkg{
+    background-image: url("/assets/angular.png");
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 3em;
+}
+.bootstrap-icon-bkg{
+    background-image: url("/assets/bootstrap.png");
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 3em;
 }
 
 .powered-by{
-    padding-top: 1.5em;
+  padding-top: 1.5em;
 }
 
 /* Main
@@ -18,7 +42,7 @@ html {
 }
 
 body {
-  margin-bottom: 160px;
+  margin-bottom: 260px;
 }
 
 /* STICKY FOOTER
@@ -30,11 +54,12 @@ footer {
   bottom: 0;
   width: 100%;
 
-  height: 160px;
+  max-height: 260px;
+  min-height: 160px;
   background: #444;
   color: white;
   text-shadow: 1px 1px 1px black;
-  padding: 20px 0;
+  padding: 2em;
   min-width:320px;
 }
 
@@ -43,6 +68,11 @@ footer {
     vertical-align: central;
     text-align: left;
     padding-left: 1em;
+}
+
+.not-available{
+  visibility: collapse;
+    background: blue;
 }
 
 /* RESPONSIVE CSS

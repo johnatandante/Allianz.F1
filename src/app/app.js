@@ -3,7 +3,7 @@ var app = angular
     .module('F1AzApp',
         [
             'mainControllers'
-            ,'menuControllers'
+            , 'menuControllers'
             , 'raceControllers'
             //, 'elearningControllers'
             //, 'profileControllers'

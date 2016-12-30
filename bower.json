@@ -21,6 +21,8 @@
     "jquery": "^1.9.1",
     "angular-route": "^1.6.1",
     "angular-sanitize": "^1.6.1",
-    "angular-animate": "^1.6.1"
+    "angular-animate": "^1.6.1",
+    "ng-resource": "^0.0.2",
+    "angular-resource": "^1.6.1"
   }
 }

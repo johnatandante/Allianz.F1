@@ -4,6 +4,7 @@ var app = angular
         [
             'mainControllers'
             ,'menuControllers'
+            , 'raceControllers'
             //, 'elearningControllers'
             //, 'profileControllers'
             , 'ngRoute'
@@ -18,6 +19,23 @@ app.config(['$routeProvider', '$locationProvider',
                 controller: "mainController",
                 controllerAs: "home"
             })
+            .when('/races', {
+                templateUrl: "/app/views/races/index.html",
+                controller: "raceController",
+                controllerAs: "races"
+            })
+
+            //.when('/circuits', {
+            //    templateUrl: "/app/views/circuits/index.html",
+            //    controller: "circuitController",
+            //    controllerAs: "circuits"
+            //})
+            //.when('/drivers', {
+            //    templateUrl: "/app/views/drivers/index.html",
+            //    controller: "driversController",
+            //    controllerAs: "drivers"
+            //})
+
             .when("/about", {
                 templateUrl: "/app/views/about/index.html"
             //    controller: "profileController",

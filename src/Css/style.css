@@ -1,14 +1,25 @@
-.navbar {
-  margin-bottom: 0;
-}
-
-
 .img-64{
     padding: 2em;
     min-width:64px;
 }
 
-/* Bkg Icon 
+/* Menu img Icons 
+-------------------------------------------------- */
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.login-menu{  
+  margin-top: -0.5em;
+}
+
+.img-icon{
+    max-width: 32px;
+    max-height: 32px;
+}
+
+/* Footer Bkg Icon 
 -------------------------------------------------- */
 
 .github-icon-bkg{
@@ -43,6 +54,16 @@ html {
 
 body {
   margin-bottom: 260px;
+}
+
+.img-news-wide {
+  max-height: 265px;
+  max-width: 512px;
+  align-content: center;
+  border-spacing: 1em;
+  border-color: red;
+  border-style: groove;
+
 }
 
 /* STICKY FOOTER

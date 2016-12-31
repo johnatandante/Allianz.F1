@@ -22,6 +22,7 @@
 
     <script src="/app/app.js"></script>
     <script src="/app/controllers/menuControllers.js"></script>
+    <script src="/app/controllers/homeControllers.js"></script>
     <script src="/app/controllers/mainControllers.js"></script>
     <script src="/app/controllers/raceControllers.js"></script>
     <script src="/app/services/localDataServices.js"></script>
@@ -32,36 +33,7 @@
 <body ng-app="F1AzApp">
     <header>
         <h1>Formula 1 Fantasy League - AZ Edition 2017</h1>
-
-        <nav class="navbar navbar-default" role="navigation" ng-controller="menuController">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!--
-                    <a class="navbar-brand github-icon-bkg" href="https://github.com/johnatandante" target="_blank">JohnatanDante On GitHub</a>
-                     -->
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/home">Home</a></li>
-                        <li><a href="/races">Championship</a></li>
-                        <li><a href="/drivers">Drivers</a></li>
-                        <li><a href="/circuits">Circuits</a></li>
-                        <li><a href="/about">About</a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
-
+        <menu-navigation></menu-navigation>
     </header>
     <div ng-view></div>
     <footer ng-controller="mainController">

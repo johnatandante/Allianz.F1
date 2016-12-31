@@ -3,10 +3,9 @@ var app = angular
     .module('F1AzApp',
         [
             'mainControllers'
+            , 'homeControllers'
             , 'menuControllers'
             , 'raceControllers'
-            //, 'elearningControllers'
-            //, 'profileControllers'
             , 'ngRoute'
         ]);
 
@@ -16,7 +15,7 @@ app.config(['$routeProvider', '$locationProvider',
         $routeProvider
             .when('/home', {
                 templateUrl: "/app/views/home/index.html",
-                controller: "mainController",
+                controller: "homeController",
                 controllerAs: "home"
             })
             .when('/races', {

@@ -10,7 +10,7 @@ angular.module('menuControllers',
         $scope.isCollapsed = false;
 
         $scope.userProfile = {
-            imgUrl: '/assets/img-news.png',
+            imgUrl: '../../assets/img-news.png',
             userName: 'JohnatanDante'
         };
 
@@ -18,7 +18,7 @@ angular.module('menuControllers',
     .directive('menuNavigation', function(){
         return {
             restrict: 'E',
-            templateUrl: '/app/views/shared/menu.html'
+            templateUrl: '../../app/views/shared/menu.html'
             , controller: 'menuController'
         };
 

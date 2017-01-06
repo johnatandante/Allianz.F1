@@ -3,7 +3,7 @@ var urlRandom = "?" + +Math.random();
 
 local.factory('RacesData', ['$resource',
   function($resource){
-      return $resource('/app/mocks/races.json' + urlRandom, {}, {
+      return $resource('../../app/mocks/races.json' + urlRandom, {}, {
         query: {
             method: 'GET',
             isArray: false
@@ -13,7 +13,7 @@ local.factory('RacesData', ['$resource',
 
   
 local.factory('DriversData', ['$resource', function($resource){
-      return $resource('/app/mocks/drivers.json', {}, {
+      return $resource('../../app/mocks/drivers.json', {}, {
         query: {
             method: 'GET',
             isArray: false
@@ -23,7 +23,7 @@ local.factory('DriversData', ['$resource', function($resource){
 
 
 local.factory('CircuitsData', ['$resource', function($resource){
-      return $resource('/app/mocks/circuits.json', {}, {
+      return $resource('../../app/mocks/circuits.json', {}, {
         query: {
             method: 'GET',
             isArray: false

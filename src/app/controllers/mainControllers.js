@@ -10,7 +10,7 @@ angular.module('mainControllers', [
     .directive("homeFooter", function() {
         return {
             restrict: 'E',
-            templateUrl: "/app/views/shared/footer.html"
+            templateUrl: "../../app/views/shared/footer.html"
         }
     });
 

@@ -9,6 +9,36 @@
 			"name": "Formula1 AZ",
 			"program": "${workspaceRoot}/src/server.js",
 			"cwd": "${workspaceRoot}"
-		}
+		},
+		{
+            "name": "Formula1 AZ .NET Core Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceRoot}/src-dotnet/bin/Debug/netcoreapp1.1/src-dotnet.dll",
+            "args": [],
+            "cwd": "${workspaceRoot}/src-dotnet/",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "launchBrowser": {
+                "enabled": true,
+                "args": "${auto-detect-url}",
+                "windows": {
+                    "command": "cmd.exe",
+                    "args": "/C start ${auto-detect-url}"
+                },
+                "osx": {
+                    "command": "open"
+                },
+                "linux": {
+                    "command": "xdg-open"
+                }
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+           
+        }
+
 	]
 }
